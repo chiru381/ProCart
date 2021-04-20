@@ -12,7 +12,16 @@ let Login=()=>{
     };
     return(
         <>
-        <section>
+        <section className="bg-warning">
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h3>Login Form</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section className="m-auto">
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-md-5">
@@ -24,13 +33,28 @@ let Login=()=>{
                             <div className="card-body">
                                 <form onSubmit={submitHandler}>
                                     <div className="form-group">
-                                        <input type="text" className="form-control" placeholder="EmailId" name="email" value={user.email} onChange={inputHandler} />
+                                        <input 
+                                           type="text" 
+                                           className="form-control" 
+                                           placeholder="EmailId" 
+                                           name="email" 
+                                           value={user.email} 
+                                           onChange={inputHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <input type="password" className="form-control" placeholder="Password" name="password" value={user.password} onChange={inputHandler} />
+                                        <input 
+                                           type="password" 
+                                           className="form-control" 
+                                           placeholder="Password" 
+                                           name="password" 
+                                           value={user.password} 
+                                           onChange={inputHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <input type="submit" className="form-control btn btn-primary" value="Login" />
+                                        <input 
+                                           type="submit" 
+                                           className="form-control btn btn-primary" 
+                                           value="Login" />
                                     </div>
                                 </form>
                                 <Link to="/forgetpassword">ForgetPassword</Link>

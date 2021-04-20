@@ -41,6 +41,8 @@ let Navbar=()=>{
                 Product Upload
               </Link>
             </li>
+            </ul>
+            <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <Link className="nav-link" to="/cart">
                 <i className="fa fa-shopping-cart">
