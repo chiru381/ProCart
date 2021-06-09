@@ -1,37 +1,37 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-const mongoose = require('mongoose');
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const morgan = require("morgan");
 
-const dotenv = require('dotenv');
-const morgan = require('morgan');
-const productRouter = require('./routes/productRouter');
-dotenv.config({path:'./config/config.env'});
+dotenv.config({ path: "./config/config.env" });
+
+app.use(morgan("dev"));
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
-app.use(morgan('dev'));
-
-app.get('/', (req, res)=>{
-    res.send(`<h1>Cart Application</h1>`);
+app.get("/", (req, res) => {
+  res.send("<h1> Pro Cart Application</h1>");
 });
-app.use('/products', productRouter);
+app.use("/user", require("./routes/userRouter"));
 
-mongoose.connect(process.env.DATABASEURL,{
+mongoose
+  .connect(process.env.DATABASEURL, { 
+    useNewUrlParser: true, 
     useUnifiedTopology: true,
-    useNewUrlParser: true,
+    useCreateIndex: true,
     useFindAndModify: false,
-    useCreateIndex: true
-})
-.then((response)=>{
-    console.log(`MongoDB connection Successfull`);
-})
-.catch((err)=>{
+ })
+  .then((response) => {
+    console.log("Mongo DB - Connected Successfully");
+  })
+  .catch((err) => {
     console.log(err);
-});
+  });
 
-app.listen(process.env.PORT, (err)=>{
-    if(err) throw err;
-    console.log(`Server is running on Port No: ${process.env.PORT}`);
+app.listen(process.env.PORT, (err) => {
+  if (err) throw err;
+  console.log(`Server Running on Post Number ... ${process.env.PORT}`);
 });

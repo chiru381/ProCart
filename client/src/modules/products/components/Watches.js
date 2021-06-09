@@ -7,8 +7,8 @@ import Hager from '../../../assets/images/hager.jpg';
 let Watches=()=>{
     return(
         <>
-        <section className="bg-info">
-            <div className="container" style={{color: 'red'}}>
+        <section className="bg-warning">
+            <div className="container">
                 <div className="row">
                     <div className="col">
                         <h1>Watch Products</h1>

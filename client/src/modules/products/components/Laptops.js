@@ -11,7 +11,7 @@ let Laptops=()=>{
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h1>Laptops Data</h1>
+                        <h1>Laptops Products</h1>
                     </div>
                 </div>
             </div>

@@ -7,11 +7,11 @@ import Redmi from '../../../assets/images/redmi.jpg';
 let Mobiles=()=>{
     return(
         <>
-        <section className="bg-info" style={{color: 'green'}}>
+        <section className="bg-warning">
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h1>Watch Products</h1>
+                        <h1>Mobile Products</h1>
                     </div>
                 </div>
             </div>
