@@ -22,7 +22,25 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ error: "Server Error" });
   }
 });
-router.post("/login", (req, res) => {
-  res.send("<h2> Login Req</h2>");
+
+router.post("/login", async (req, res) => {
+  try {
+    let { email, password } = req.body;
+    let user = await User.findOne({ email: email });
+    if (!user) {
+      return resp.status(400).json({ error: "User Account Not Available" });
+    }
+    let result = await bcrypt.compare(password, user.password);
+    if (!result) {
+      return resp.status(400).json({ status: " Password Not Matches" });
+    }
+    let payload = {
+      user: { id: user.id },
+    };
+    console.log(payload, "Payload");
+  } catch (err) {
+    if (err) throw err;
+    resp.status(500).json({ error: "Server Error" });
+  }
 });
 module.exports = router;
