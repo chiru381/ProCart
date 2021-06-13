@@ -1,8 +1,9 @@
 const express = require("express");
 const User = require("../model/User");
 const router = express.Router();
-
+const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
+const auth = require('../middleware/auth');
 
 router.post("/register", async (req, res) => {
   try {
@@ -15,6 +16,7 @@ router.post("/register", async (req, res) => {
     password = await bcrypt.hash(password, salt);
 
     user = new User({ name, email, password });
+    console.log(user);
     user = await user.save();
     res.status(200).json({ result: "Success", user: user });
   } catch (err) {
@@ -37,10 +39,29 @@ router.post("/login", async (req, res) => {
     let payload = {
       user: { id: user.id },
     };
+    jwt.sign(payload, process.env.SECRETKEY, (err, token) => {
+      if(err) throw err;
+      console.log(token);
+      res.status(200).json({ status: "Login success", token: token });
+    });
     console.log(payload, "Payload");
+    console.log(process.env.SECRETKEY);
   } catch (err) {
     if (err) throw err;
     resp.status(500).json({ error: "Server Error" });
   }
 });
+
+router.get("/", auth, async(req, res)=>{
+  try {
+    console.log(req.user.id);
+    console.log(req.user);
+    let user = await User.findById(req.user.id).select("-password");
+    res.status(200).json(user);
+  } catch (err) {
+    if(err) throw err;
+    res.status(500).json({ error: "server error" });
+  }
+})
+
 module.exports = router;

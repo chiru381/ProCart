@@ -54,4 +54,17 @@ router.get("/laptops", async(req, res)=>{
     }
 });
 
+router.get("/:id", async(req, res)=>{
+    try {
+        let productId = req.params.id;
+        let product = await Product.findOne({ _id: productId });
+        console.log(productId);
+        console.log(product);
+        res.status(200).json(product);
+    } catch (err) {
+        if(err) throw err;
+        res.status(500).json({ msg: "server error" });
+    }
+})
+
 module.exports = router;
