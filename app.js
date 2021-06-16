@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -7,6 +8,7 @@ const morgan = require("morgan");
 
 dotenv.config({ path: "./config/config.env" });
 
+app.use(cors());
 app.use(morgan("dev"));
 
 app.use(express.json());
