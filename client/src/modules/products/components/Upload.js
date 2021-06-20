@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { uploadProductAction } from '../../../redux/products/product.action';
 
 let Upload=()=>{
     let dispatch = useDispatch();
+    let history = useHistory();
     let [product, setProduct]=useState({
         name: "",
         brand: "",
-        image: "",
+        image: "image one",
         price: "",
         qty: "",
         category: "",
@@ -18,6 +20,7 @@ let Upload=()=>{
         setProduct({...product, [event.target.name]:event.target.value});
     };
     let imageHandler=(event)=>{
+        console.log("image handler");
         let imageFile=event.target.files[0];
         let reader=new FileReader();
         reader.readAsDataURL(imageFile);
@@ -29,10 +32,8 @@ let Upload=()=>{
         console.log(imageFile);
     };
     let submitHandler=(event)=>{
-        console.log(product, "Testing");
-        //dispatch to action with product
         event.preventDefault();
-        dispatch(uploadProductAction(product));
+        dispatch(uploadProductAction(product, history));
     }
     return(
         <>
@@ -45,6 +46,7 @@ let Upload=()=>{
                 </div>
             </div>
         </section>
+        <pre>{JSON.stringify(product)}</pre>
         <section>
             <div className="container mt-5">
                 <div className="row">
@@ -52,7 +54,6 @@ let Upload=()=>{
                         <div className="card">
                             <div className="card-header">
                                 <h4>Upload Products</h4>
-                                <pre>{JSON.stringify(product)}</pre>
                             </div>
                             <div className="card-body">
                             <form onSubmit={submitHandler}>
@@ -96,8 +97,8 @@ let Upload=()=>{
                                 <input 
                                    type="file" 
                                    className="form-control" 
-                                   placeholder="Please Upload Image" 
-                                   onChange={imageHandler} 
+                                   placeholder="Product Image" 
+                                   onChange={imageHandler}
                                    name="image" />
                             </div>
                             <div className="form-group">
