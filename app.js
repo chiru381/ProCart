@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 });
 app.use("/user", require("./routes/userRouter"));
 app.use("/product", require("./routes/productRouter"));
+// app.use('/otp', require('./routes/otpRouter'));
 
 mongoose
   .connect(process.env.DATABASEURL, { 
