@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { uploadLoginAction } from '../../../redux/users/user.action';
 
 let Login=()=>{
+    let dispatch = useDispatch();
+    let history = useHistory();
     let [user, setUser]=useState({email: "", password: "" });
     let inputHandler=(event)=>{
         setUser({...user, [event.target.name]: event.target.value});
     };
     let submitHandler=(event)=>{
         event.preventDefault();
+        dispatch(uploadLoginAction(user, history));
         console.log(user, "Testing...");
     };
     return(

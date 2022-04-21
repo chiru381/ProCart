@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { uploadUserAction } from '../../../redux/users/user.action';
 
 let Signup=()=>{
-    let [user, setUser]=useState({user: "", email: "", password: ""});
+    let dispatch = useDispatch();
+    let history = useHistory();
+    let [user, setUser]=useState({ name: "", email: "", password: "" });
     let inputHandler=(event)=>{
         setUser({...user, [event.target.name]: event.target.value});
     };
     let submitHandler=(event)=>{
         console.log(user);
         event.preventDefault();
+        dispatch(uploadUserAction(user, history));
     };
     return(
         <>
@@ -35,7 +41,7 @@ let Signup=()=>{
                                         <input 
                                            type="text" 
                                            className="form-control" 
-                                           name="user" 
+                                           name="name" 
                                            placeholder="UserName" 
                                            onChange={inputHandler} />
                                     </div>
