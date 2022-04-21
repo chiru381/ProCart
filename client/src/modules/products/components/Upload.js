@@ -133,7 +133,7 @@ let Upload=()=>{
                                    type="submit" 
                                    className="form-control btn btn-primary" />
                             </div>
-                        </form>
+                            </form>
                             </div>
                         </div>
                     </div>
