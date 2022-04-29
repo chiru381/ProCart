@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 
 dotenv.config({ path: "./config/config.env" });
+const logger = require("./config/logger");
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -22,12 +23,12 @@ app.use("/product", require("./routes/productRouter"));
 // app.use('/otp', require('./routes/otpRouter'));
 
 mongoose
-  .connect(process.env.DATABASEURL, { 
-    useNewUrlParser: true, 
+  .connect(process.env.DATABASEURL, {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
- })
+  })
   .then((response) => {
     console.log("Mongo DB - Connected Successfully");
   })
@@ -37,5 +38,6 @@ mongoose
 
 app.listen(process.env.PORT, (err) => {
   if (err) throw err;
-  console.log(`Server Running on Post Number ... ${process.env.PORT}`);
+  console.log("server connected");
+  logger.error(`Server Running on Post Number ... ${process.env.PORT}`);
 });
