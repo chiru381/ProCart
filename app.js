@@ -20,10 +20,10 @@ app.get("/", (req, res) => {
 });
 app.use("/user", require("./routes/userRouter"));
 app.use("/product", require("./routes/productRouter"));
-// app.use('/otp', require('./routes/otpRouter'));
 
+//DATABASEURL=mongodb://127.0.0.1:27017/procart
 mongoose
-  .connect(process.env.DATABASEURL, {
+  .connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -33,7 +33,7 @@ mongoose
     console.log("Mongo DB - Connected Successfully");
   })
   .catch((err) => {
-    console.log(err);
+    logger.error(err);
   });
 
 app.listen(process.env.PORT, (err) => {

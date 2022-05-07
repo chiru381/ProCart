@@ -1,25 +1,26 @@
 let account_id = "AC5bd82e52916581c6b13b0f2f441b45f5";
-let auth_id = "3921406626384bd25ce84642022b3409";
-let twilio = require("twilio")(account_id , auth_id);
+let auth_id = "1410926b1200db7ec02628563e7ec453";
+let twilio = require("twilio")(account_id, auth_id);
 
-function otp(oo){
+//using twilio
+function otp(otp1) {
+  let o = otp1;
 
-    let o = oo
+  let msg = [{ mass: "send", otp: `${o}` }];
 
+  twilio.messages
+    .create({
+      from: "+19705949275",
+      to: `+91 9010813851`,
+      body: `your otp is ${o}`,
+    })
+    .then((r) => {
+      console.log(msg);
+    })
 
-    let daddy = [{"mass":"send" , "otp" : `${o}`}];
-
-
-    twilio.messages.create({
-        from : "+19705949275",
-        to : `+91 9010813851`,
-        body : `your otp is ${o}` 
-    }).then((r)=>{console.log(daddy)
-        })
-        
-    .catch((err)=>{console.log(err)});
-
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
-
-otp(1234);
+otp(1525);

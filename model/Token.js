@@ -15,11 +15,11 @@ let TokenSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  // customers: {},
   createdAt: {
     type: Date,
     default: Date.now,
     // expires: 3600,
+    // if expires used that time after 3600 seconds automatically deleted in database.
   },
 });
 

@@ -9,9 +9,10 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const auth = require("../middleware/auth");
 
+//register api
 router.post("/register", async (req, res) => {
   try {
-    let { name, email, password } = req.body;
+    let { name, email, phone_number, password } = req.body;
     let user = await User.findOne({ email: email });
     if (user) {
       return res.status(401).json({ error: "User Already Existed" });
@@ -19,7 +20,7 @@ router.post("/register", async (req, res) => {
     let salt = await bcrypt.genSaltSync(10);
     password = await bcrypt.hash(password, salt);
 
-    user = new User({ name, email, password });
+    user = new User({ name, email, phone_number, password });
     console.log(user);
     user = await user.save();
     res.status(200).json({ result: "Success", user: user });
@@ -29,6 +30,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//login api
 router.post("/login", async (req, res) => {
   try {
     let { email, password } = req.body;
@@ -58,6 +60,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//password reset api
 router.post("/password-reset", async (req, res) => {
   try {
     const schema = Joi.object({ email: Joi.string().email().required() });
@@ -97,6 +100,7 @@ router.post("/one", async (req, res) => {
   }
 });
 
+//set password
 router.post("/:userId/:token", async (req, res) => {
   try {
     const schema = Joi.object({ password: Joi.string().required() });
