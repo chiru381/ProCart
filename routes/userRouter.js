@@ -12,7 +12,7 @@ const auth = require("../middleware/auth");
 //register api
 router.post("/register", async (req, res) => {
   try {
-    let { name, email, phone_number, password } = req.body;
+    let { name, email, password } = req.body;
     let user = await User.findOne({ email: email });
     if (user) {
       return res.status(401).json({ error: "User Already Existed" });
@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
     let salt = await bcrypt.genSaltSync(10);
     password = await bcrypt.hash(password, salt);
 
-    user = new User({ name, email, phone_number, password });
+    user = new User({ name, email, password });
     console.log(user);
     user = await user.save();
     res.status(200).json({ result: "Success", user: user });

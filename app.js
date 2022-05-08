@@ -21,9 +21,8 @@ app.get("/", (req, res) => {
 app.use("/user", require("./routes/userRouter"));
 app.use("/product", require("./routes/productRouter"));
 
-//DATABASEURL=mongodb://127.0.0.1:27017/procart
 mongoose
-  .connect(process.env.DB, {
+  .connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
