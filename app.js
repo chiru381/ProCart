@@ -22,7 +22,7 @@ app.use("/user", require("./routes/userRouter"));
 app.use("/product", require("./routes/productRouter"));
 
 mongoose
-  .connect(process.env.DATABASEURL, {
+  .connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
