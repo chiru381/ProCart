@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 //using nodemailer
-const sendEmail = async (email, subject, text) => {
+const sendEmail = async (email, subject, text, link, otp_code) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "gmail",
@@ -16,10 +16,10 @@ const sendEmail = async (email, subject, text) => {
 
     await transporter.sendMail({
       from: "chirukosanam123@gmail.com",
-      to: "chiranjeevikosanam3@gmail.com",
+      to: email,
       subject: "Hi....",
       text: "Hello...........",
-      html: `<h1>Welcome</h1><p>Your verification is successfully completed.</p>`,
+      html: `<h1>Welcome</h1><p>Your verification is  successfully completed. ${link}, ${otp_code}.</p>`,
     });
 
     console.log("email sent sucessfully");

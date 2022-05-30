@@ -9,6 +9,12 @@ import Cart from "./modules/order/components/Cart";
 import Login from "./modules/user/components/Login";
 import Signup from "./modules/user/components/Signup";
 import Profile from "./modules/user/components/Profile";
+
+import Reacts from "./modules/layout/Interview/React";
+import Node from "./modules/layout/Interview/Node";
+import Express from "./modules/layout/Interview/Express";
+import Mongodb from "./modules/layout/Interview/Mongodb";
+
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -29,6 +35,11 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
+
+            <Route exact path="/react" component={Reacts} />
+            <Route exact path="/node" component={Node} />
+            <Route exact path="/express" component={Express} />
+            <Route exact path="/mongodb" component={Mongodb} />
           </Switch>
         </Router>
       </Provider>

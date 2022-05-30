@@ -1,10 +1,10 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-let Navbar=()=>{
-    return(
-        <>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+let Navbar = () => {
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">
           Pro Cart
         </Link>
@@ -41,8 +41,28 @@ let Navbar=()=>{
                 Product Upload
               </Link>
             </li>
-            </ul>
-            <ul className="navbar-nav ml-auto">
+            <li className="nav-item active">
+              <Link className="nav-link" to="/react">
+                React
+              </Link>
+            </li>
+            <li className="nav-item active">
+              <Link className="nav-link" to="/node">
+                Node
+              </Link>
+            </li>
+            <li className="nav-item active">
+              <Link className="nav-link" to="/express">
+                Express
+              </Link>
+            </li>
+            <li className="nav-item active">
+              <Link className="nav-link" to="/mongodb">
+                Mongodb
+              </Link>
+            </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <Link className="nav-link" to="/cart">
                 <i className="fa fa-shopping-cart">
@@ -69,7 +89,7 @@ let Navbar=()=>{
           </ul>
         </div>
       </nav>
-        </>
-    )
-}
+    </>
+  );
+};
 export default Navbar;
