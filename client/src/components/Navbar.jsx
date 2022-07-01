@@ -41,26 +41,6 @@ let Navbar = () => {
                 Product Upload
               </Link>
             </li>
-            <li className="nav-item active">
-              <Link className="nav-link" to="/react">
-                React
-              </Link>
-            </li>
-            <li className="nav-item active">
-              <Link className="nav-link" to="/node">
-                Node
-              </Link>
-            </li>
-            <li className="nav-item active">
-              <Link className="nav-link" to="/express">
-                Express
-              </Link>
-            </li>
-            <li className="nav-item active">
-              <Link className="nav-link" to="/mongodb">
-                Mongodb
-              </Link>
-            </li>
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
@@ -70,7 +50,6 @@ let Navbar = () => {
                 </i>
               </Link>
             </li>
-
             <li className="nav-item active text-right">
               <Link className="nav-link" to="/login">
                 Login

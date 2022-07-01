@@ -2,9 +2,6 @@ import {
     UPLOAD_REQUEST,
     UPLOAD_SUCCESS,
     UPLOAD_FAILURE,
-    LAPTOP_REQUEST,
-    LAPTOP_SUCCESS,
-    LAPTOP_FAILURE,
 } from './product.action';
 
 let initialProduct={
@@ -22,12 +19,6 @@ let productReducer=(state=initialProduct, action)=>{
         case UPLOAD_SUCCESS:
             return { ...state, loading: false, product: payload };
         case UPLOAD_FAILURE:
-            return { ...state, loading: false };
-        case LAPTOP_REQUEST:
-            return { ...state, loading: true };
-        case LAPTOP_SUCCESS:
-            return { ...state, loading: false, product: payload };
-        case LAPTOP_FAILURE:
             return { ...state, loading: false };
         default:
             return state;
