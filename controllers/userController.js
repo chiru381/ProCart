@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const Joi = require("joi");
 const _ = require("lodash");
 const winston = require("winston");
+const httpStatus = require("http-status");
 
 const User = require("../model/User");
 const Token = require("../model/Token");
@@ -15,6 +16,7 @@ const { validate } = require("../validations/register.validation");
 const { validateforgot } = require("../validations/forgotpassword.validation");
 const { validatereset } = require("../validations/resetpassword.validation");
 const { successResponse, errorResponse } = require("../utils/message");
+
 // const { logger } = require("../utils/logger");
 
 //register
@@ -50,14 +52,16 @@ const login = async (req, res) => {
     let { email, password } = req.body;
     let user = await User.findOne({ email: email });
     if (!user) {
-      return res.status(400).json({ error: "User Account Not Available." });
+      return errorResponse(req, res, 'User Account Not Available', httpStatus.BAD_REQUEST);
+      // return res.status(400).json({ error: "User Account Not Available." });
     }
     let result = await bcrypt.compare(password, user.password);
 
     // console.log(password, user.password, "..........1");
 
     if (!result) {
-      return res.status(400).json({ status: " Password Not Matches" });
+      return errorResponse(req, res, 'Password Does Not Matches', httpStatus.BAD_REQUEST);
+      // return res.status(400).json({ status: " Password Not Matches" });
     }
     let payload = {
       user: { id: user.id },
