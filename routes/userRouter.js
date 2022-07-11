@@ -13,6 +13,7 @@ const {
   follow,
   unfollow,
   getFriends,
+  googlelogin,
 } = require("../controllers/userController");
 const auth = require("../utils/auth");
 
@@ -27,5 +28,6 @@ router.post("/verifyOTP", verifyOTP);
 router.put("/:id/follow", follow);
 router.put("/:id/unfollow", unfollow);
 router.get("/friends/:userId", getFriends);
+router.post("/googlelogin", googlelogin);
 
 module.exports = router;

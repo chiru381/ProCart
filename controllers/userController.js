@@ -5,6 +5,7 @@ const Joi = require("joi");
 const _ = require("lodash");
 const winston = require("winston");
 const httpStatus = require("http-status");
+const { OAuth2Client } = require("google-auth-library");
 
 const User = require("../model/User");
 const Token = require("../model/Token");
@@ -18,6 +19,8 @@ const { validatereset } = require("../validations/resetpassword.validation");
 const { successResponse, errorResponse } = require("../utils/message");
 
 // const { logger } = require("../utils/logger");
+
+const client = new OAuth2Client("814906746267-5f5t8s5k1hhftbueamvqcpnbbega027l.apps.googleusercontent.com")
 
 //register
 const register = async (req, res) => {
@@ -248,6 +251,25 @@ const verifyOTP = async (req, res) => {
   }
 };
 
+const resendOtp = async (req, res) => {
+  try {
+    const reqData = req.body;
+
+    var otpCode = Math.floor(1000 + Math.random() * 999999);
+
+    let otpData = new Otp({
+      email: req.body.email,
+      otp: otpCode,
+    });
+    await otpData.save();
+
+    res.send("otp resent successfully.");
+  } catch (error) {
+    if (error) throw error;
+    res.status(500).json({ error: "Server Error" });
+  }
+};
+
 const one = async (req, res) => {
   try {
     let token = await Token.find().populate("users");
@@ -336,6 +358,48 @@ const getFriends = async (req, res) => {
   }
 };
 
+//google login
+const googlelogin = async (req, res) => {
+  try {
+    const { tokenId } = req.body;
+
+    client.verifyIdToken({ idToken: tokenId, audience: "814906746267-5f5t8s5k1hhftbueamvqcpnbbega027l.apps.googleusercontent.com" }).then((response) => {
+      const { email_verified, name, email } = response.payload;
+      console.log(response.payload);
+
+      if(email_verified){
+        User.findOne({ email: email }).exec((err, user) => {
+          if(err){
+            return res.status(500).json({ error: 'something went wrong'});
+          }
+        })
+      } else {
+        if(user){
+          const token = jwt.sign({ _id: user._id }, process.env.SECRETKEY, { expiresIn: '7d'})
+          const { _id, name, email } = user;
+
+          res.json({ token, user: { _id,  name, email }})
+        } else {
+          let password = email+process.env.SECRETKEY
+          let newUser = new User({ name, email, password})
+          newUser.save((err, data) => {
+            if(err){
+              return res.status(500).json({ error: 'something went wrong'});
+            }
+            const token = jwt.sign({ _id: data._id }, process.env.SECRETKEY, { expiresIn: '7d'})
+            const { _id, name, email } = newUser;
+  
+            res.json({ token, user: { _id,  name, email }})
+          })
+        }
+      }
+    })
+    console.log('googlelogin');
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -343,9 +407,11 @@ module.exports = {
   resetPassword,
   mobileForgotPassword,
   verifyOTP,
+  resendOtp,
   one,
   two,
   follow,
   unfollow,
   getFriends,
+  googlelogin,
 };

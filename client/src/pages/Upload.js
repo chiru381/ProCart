@@ -32,6 +32,7 @@ let Upload = () => {
     console.log(imageFile);
   };
   let submitHandler = (event) => {
+    window.alert('product added successfully');
     event.preventDefault();
     dispatch(uploadProductAction(product, navigate));
   };

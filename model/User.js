@@ -11,6 +11,7 @@ let UserSchema = new mongoose.Schema({
   followers: { type: Array, default: [] },
   followings: { type: Array, default: [] },
   status: { type: String, enum: ["active", "inactive"], default: "active" },
+  email_verified: { type: String, default: "false" },
   isAdmin: { type: Boolean, default: false },
   created: { type: Date, default: Date.now() },
 });

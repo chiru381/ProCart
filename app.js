@@ -32,8 +32,14 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
 //middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(morgan("dev"));
 

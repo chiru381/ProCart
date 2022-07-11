@@ -19,9 +19,9 @@ let initialLogin={
 
 let userReducer=(state=initialUser, action)=>{
     let { type, payload } = action;
-    console.log(action, "........hello, action");
-    console.log(payload, ".......");
-    console.log(type, " User Request");
+    // console.log(action, "........hello, action");
+    // console.log(payload, ".......");
+    // console.log(type, " User Request");
     switch(action.type){
         case REGISTER_REQUEST:
             return { ...state, loading: true };
@@ -36,9 +36,9 @@ let userReducer=(state=initialUser, action)=>{
 
 let loginReducer=(state=initialLogin, action)=>{
     let { type, payload } = action;
-    console.log(action, "........hello, action");
-    console.log(payload, ".......");
-    console.log(type, " User Request");
+    // console.log(action, "........hello, action");
+    // console.log(payload, ".......");
+    // console.log(type, " User Request");
     switch(action.type){
         case LOGIN_REQUEST:
             return { ...state, loading: true };

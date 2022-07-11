@@ -8,6 +8,10 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Upload from "./pages/Upload";
 import Cart from "./pages/Cart";
+import UserProfile from "./pages/UserProfile";
+import OrderHistory from "./pages/OrderHistory";
+import SignOut from "./pages/SignOut";
+import MobilesPage from "./pages/MobilesPage";
 
 function App() {
   return (
@@ -22,6 +26,12 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/upload" element={<Upload />} />
           <Route exact path="/cart" element={<Cart />} />
+
+          <Route exact path="/userprofile" element={<UserProfile />} />
+          <Route exact path="/orderHistory" element={<OrderHistory />} />
+          <Route exact path="/signout" element={<SignOut />} />
+
+          <Route exact path="/mobiles" element={<MobilesPage />} />
         </Routes>
       </BrowserRouter>
     </>

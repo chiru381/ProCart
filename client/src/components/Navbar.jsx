@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 let Navbar = () => {
   return (
     <>
+
       {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">
           Pro Cart
@@ -99,10 +100,6 @@ let Navbar = () => {
                 Product Upload
               </Link>
             </li>
-        
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -127,14 +124,26 @@ let Navbar = () => {
               </Link>
             </li>
             <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
+          <Link class="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Chiru
+          </Link>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <Link className="dropdown-item" to="/userprofile">
+                User Profile
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/orderhistory">
+                Order History
+              </Link>
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li>
+              <Link className="dropdown-item" to="/signout">
+                Sign Out
+              </Link>
+            </li>
           </ul>
         </li>
             <li className="nav-item active text-right">
