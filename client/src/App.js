@@ -12,6 +12,11 @@ import UserProfile from "./pages/UserProfile";
 import OrderHistory from "./pages/OrderHistory";
 import SignOut from "./pages/SignOut";
 import MobilesPage from "./pages/MobilesPage";
+import Product from "./pages/Product";
+import Orders from "./pages/Orders";
+import Users from "./pages/Users";
+import Support from "./pages/Support";
+import LaptopsPage from "./pages/LaptopsPage";
 
 function App() {
   return (
@@ -32,6 +37,13 @@ function App() {
           <Route exact path="/signout" element={<SignOut />} />
 
           <Route exact path="/mobiles" element={<MobilesPage />} />
+          <Route exact path="/laptops" element={<LaptopsPage />} />
+
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/products" element={<Product />} />
+          <Route exact path="/orders" element={<Orders />} />
+          <Route exact path="/users" element={<Users />} />
+          <Route exact path="/support" element={<Support />} />
         </Routes>
       </BrowserRouter>
     </>

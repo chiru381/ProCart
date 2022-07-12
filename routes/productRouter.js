@@ -72,4 +72,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//get product categories
+router.get("/categories", async (req, res) => {
+  try {
+    const categories = await Product.find().distinct("category")
+    res.status(200).json({ categories: categories });
+  } catch (err) {
+    if (err) throw err;
+    res.status(500).json({ msg: "server error" });
+  }
+})
+
 module.exports = router;

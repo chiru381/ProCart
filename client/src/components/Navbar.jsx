@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 let Navbar = () => {
+
+  const signoutHandler = () => {
+    window.location.href = "/login";
+    console.log("Sign out page");
+  }
   return (
     <>
 
@@ -140,14 +145,43 @@ let Navbar = () => {
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
-              <Link className="dropdown-item" to="/signout">
+              <Link className="dropdown-item" to="/signout" onClick={signoutHandler} >
                 Sign Out
               </Link>
             </li>
           </ul>
-        </li>
-            <li className="nav-item active text-right">
-              
+            </li>
+            <li class="nav-item dropdown">
+          <Link class="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </Link>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <Link className="dropdown-item" to="/dashboard">
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/products">
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/orders">
+                Orders
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/users">
+                Users
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/support">
+                Support
+              </Link>
+            </li>
+          </ul>
             </li>
           </ul>
       
