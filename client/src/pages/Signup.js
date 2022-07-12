@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import service from "../utils/service";
 import ErrorMessage from "../utils/ErrorMessage";
@@ -38,7 +37,7 @@ function Signup() {
       {error ? <ErrorMessage message={error} onClose={closeError} /> : null}
 
       <Link to="/">
-        <ArrowBackIcon className="backArrowIcon" fontSize="large" />
+        Back to
       </Link>
 
       <section className="bg-warning">

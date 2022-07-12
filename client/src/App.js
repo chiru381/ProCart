@@ -17,6 +17,7 @@ import Orders from "./pages/Orders";
 import Users from "./pages/Users";
 import Support from "./pages/Support";
 import LaptopsPage from "./pages/LaptopsPage";
+import WatchesPage from "./pages/WatchesPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
 
           <Route exact path="/mobiles" element={<MobilesPage />} />
           <Route exact path="/laptops" element={<LaptopsPage />} />
+          <Route exact path="/watches" element={<WatchesPage />} />
 
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/products" element={<Product />} />
