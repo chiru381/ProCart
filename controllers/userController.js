@@ -10,6 +10,9 @@ const { OAuth2Client } = require("google-auth-library");
 const User = require("../model/User");
 const Token = require("../model/Token");
 const Otp = require("../model/Otp");
+const Country = require("../model/Country");
+const State = require("../model/State");
+const City = require("../model/City");
 const sendEmail = require("../utils/sendEmail");
 const Utilsfile = require("../utils/ejs");
 const emailHelper = require("../utils/email");
@@ -400,6 +403,60 @@ const googlelogin = async (req, res) => {
   }
 };
 
+//get all countries
+const getCountries = async (req, res) => {
+  try {
+    console.log('getCountries');
+    let countryData = await Country.find(
+      { status: "active" },
+      { _id: 0 }
+    );
+    if (countryData.length) {
+      // res.status(200).json( "Country List", countryData );
+      console.log(countryData.length );
+    }
+    res.status(200).send(countryData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+//get all states
+const getStates = async (req, res) => {
+  try {
+      console.log('getStates');
+      let stateData = await State.find(
+        { status: "active" },
+        { _id: 0 }
+      );
+      if (stateData.length) {
+        // res.status(200).json( "State List", stateData );
+        console.log(stateData.length );
+      }
+      res.status(200).send(stateData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+//get all cities
+const getCities = async (req, res) => {
+  try {
+      console.log('getCities');
+      let cityData = await City.find(
+        { status: "active" },
+        { _id: 0 }
+      );
+      if (cityData.length) {
+        // res.status(200).json( "City List", cityData );
+        console.log(cityData.length );
+      }
+      res.status(200).send(cityData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -414,4 +471,7 @@ module.exports = {
   unfollow,
   getFriends,
   googlelogin,
+  getCountries,
+  getStates,
+  getCities,
 };
