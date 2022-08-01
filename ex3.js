@@ -2,8 +2,8 @@ const AdmZip = require('adm-zip');
 
 const file = new AdmZip();
 
-file.addLocalFile('routes');
-file.addLocalFolder('routes');
+file.addLocalFile('./model', 'project');
+file.addLocalFolder('./node_modules', 'project/node_modules');
 
 const fs = require('fs');
 
