@@ -18,6 +18,8 @@ import Users from "./pages/Users";
 import Support from "./pages/Support";
 import LaptopsPage from "./pages/LaptopsPage";
 import WatchesPage from "./pages/WatchesPage";
+import Pay from './pages/Pay'
+import Success from "./pages/Success"
 
 function App() {
   return (
@@ -46,6 +48,9 @@ function App() {
           <Route exact path="/orders" element={<Orders />} />
           <Route exact path="/users" element={<Users />} />
           <Route exact path="/support" element={<Support />} />
+
+          <Route exact path="/pay" element={<Pay />} />
+          <Route exact path="/success" element={<Success />} />
         </Routes>
       </BrowserRouter>
     </>
