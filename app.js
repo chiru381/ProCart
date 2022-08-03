@@ -53,6 +53,7 @@ app.use("/user", require("./routes/userRouter"));
 app.use("/post", require("./routes/postRouter"));
 app.use("/category", require("./routes/categoryRouter"));
 app.use("/product", require("./routes/productRouter"));
+app.use("/api", require("./routes/apiRouter"));
 
 //winston
 winston.loggers.add('user', {

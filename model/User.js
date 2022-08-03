@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 let UserSchema = new mongoose.Schema({
   user_id: { type: String, required: true },
@@ -12,6 +13,10 @@ let UserSchema = new mongoose.Schema({
   followings: { type: Array, default: [] },
   status: { type: String, enum: ["active", "inactive"], default: "active" },
   email_verified: { type: String, default: "false" },
+  plan: {
+    type: Schema.Types.ObjectId,
+    ref: 'Plan'
+},
   isAdmin: { type: Boolean, default: false },
   created: { type: Date, default: Date.now() },
 });
